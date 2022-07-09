@@ -1,24 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useState, useEffect } from "react";
+import Navbar from "./componets/Navbar";
+import ElementList from "./componets/elementList";
+import Form from "./componets/Form";
 
 function App() {
+
+  const [element, setElement] = useState([]);
+
+  useEffect(() => {
+    const getElements = () => {
+      fetch("http://localhost:5000/api/stars")
+      .then(res => res.json())
+      .then(res => setElement(res))
+    }
+    getElements();
+  }, []);
+  
+  // const checks = Form.data;
+
+  // console.log(checks.rank);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Navbar brand="Wayru Challenge" />
+      <br/>
+      <div className="container">
+        <div className="column">
+        <div className="col-5">
+          <h2 stlye={{
+              textAlign: "center",
+            }}
+            >
+              Elements Form
+            </h2>
+            <br/>
+            <Form />
+          </div>
+          <br/>
+          <br/>
+          <div className="col-7">
+            <h2 stlye={{
+              textAlign: "center",
+            }}
+            >
+              Elements List
+            </h2>
+            <ElementList elements={element}/>
+          </div>
+        </div>
+      </div>
+    </Fragment>
   );
 }
 
