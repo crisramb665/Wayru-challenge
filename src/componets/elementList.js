@@ -20,7 +20,7 @@ const ElementList = ({elements}) => {
             </thead>
             <tbody>
                 {elements.map(element => (
-                    <tr key={element.language}>
+                    <tr key={element.rank}>
                         <th>{element.rank}</th>
                         <th>{element.item}</th>
                         <th>{element.repo_name}</th>
