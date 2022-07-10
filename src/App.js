@@ -50,7 +50,7 @@ function App() {
       <div className="container">
         <div className="column">
         <div className="col-5">
-          <h2 stlye={{
+          <h2 style={{
               textAlign: "center",
             }}
             >
@@ -65,7 +65,7 @@ function App() {
           <br/>
           <br/>
           <div className="col-20">
-            <h2 stlye={{
+            <h2 style={{
               textAlign: "center",
             }}
             >
