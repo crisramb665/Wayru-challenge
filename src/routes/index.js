@@ -7,12 +7,20 @@ router.get("/", (req, res) => {
         {
             "name": "Cristian",
             "lastname": "Romero",
-            "job": "Developer"
+            "job": "Developer",
+            "age": 26
         },
         {
             "name": "Yisela",
             "lastname": "Ferreira",
-            "job": "Mercadologa"
+            "job": "Mercadologa",
+            "age": 24
+        },
+        {
+            "name": "Miguel",
+            "lastname": "Carriazo",
+            "job": "Developer",
+            "age": 18
         }
     ]
     res.json(data);
