@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
-const Form = () => {
+const Form = ({updater}) => {
 
     const [data, setData] = useState({
-        number: "",
+        number: 0,
         language: ""
     });
 
     const handleInputChange = (event) => {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         setData({
             ...data,
-            [event.target.name] : [event.target.value]
+            [event.target.name] : event.target.value
         });
     }
 
@@ -45,6 +45,7 @@ const Form = () => {
                     <button 
                         type="submit" 
                         className="btn btn-dark"
+                        onClick={() => updater(data)}
                     >
                         Check
                     </button>    

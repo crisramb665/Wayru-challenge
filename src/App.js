@@ -5,6 +5,10 @@ import Form from "./componets/Form";
 
 function App() {
 
+  const [fetchdata, setFetchdata] = useState({
+    number: 1,
+    language: "JavaScript"
+  }); //Tengo que almacenar un objeto
   const [element, setElement] = useState([]);
 
   useEffect(() => {
@@ -15,10 +19,29 @@ function App() {
     }
     getElements();
   }, []);
-  
-  // const checks = Form.data;
 
-  // console.log(checks.rank);
+  const updater = (args) => {
+    setFetchdata(args);
+  }
+
+  const handleData = element.filter((d) => {
+    return d.language === fetchdata.language
+  });
+
+  const handleQuantity = handleData.filter((d, i) => {
+    return i <= fetchdata.number - 1
+  });
+
+  const handleStars = handleQuantity.sort((a, b) => 
+    b.stars - a.stars
+  );
+
+  console.log("Resultado: ", handleData);
+  console.log("Resultado del filtro del filtro", handleQuantity);
+  console.log("Filtro Final: ", handleStars)
+
+  console.log("Test de fetchdata: ", fetchdata)
+  // console.log("Test de API data: ", element[1])
 
   return (
     <Fragment>
@@ -34,18 +57,21 @@ function App() {
               Elements Form
             </h2>
             <br/>
-            <Form />
+            <p>
+              Please indicate how many elements you want to observe and indicate the language.
+            </p>
+            <Form updater={updater} />
           </div>
           <br/>
           <br/>
-          <div className="col-7">
+          <div className="col-20">
             <h2 stlye={{
               textAlign: "center",
             }}
             >
               Elements List
             </h2>
-            <ElementList elements={element}/>
+            <ElementList elements={handleStars}/>
           </div>
         </div>
       </div>
